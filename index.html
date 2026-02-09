@@ -12,16 +12,16 @@
 
     <style>
         :root {
-            --navy-blue: #002379;
-            --vibrant-orange: #FF5F00;
-            --soft-coral: #FF9F66;
-            --cream-white: #FFFAE6;
+            --deep-abyss: #0C2C55;
+            --teal-slate: #296374;
+            --cyan-accent: #629FAD;
+            --pale-sand: #EDEDCE;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--navy-blue); 
-            color: var(--cream-white);
+            background-color: var(--deep-abyss); 
+            color: var(--pale-sand);
             overflow-x: hidden;
         }
 
@@ -30,31 +30,34 @@
             width: 10px;
         }
         ::-webkit-scrollbar-track {
-            background: #001a5c;
+            background: #081d3a;
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--vibrant-orange);
+            background: var(--teal-slate);
             border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--cyan-accent);
         }
 
         /* --- Navbar --- */
         .navbar {
-            background: rgba(0, 35, 121, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 95, 0, 0.2);
+            background: rgba(12, 44, 85, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(98, 159, 173, 0.2);
         }
         
         .nav-link {
-            color: rgba(255, 250, 230, 0.7) !important;
+            color: rgba(237, 237, 206, 0.7) !important;
             transition: 0.3s;
             font-weight: 500;
         }
         .nav-link:hover, .nav-link.active {
-            color: var(--vibrant-orange) !important;
+            color: var(--cyan-accent) !important;
             transform: translateY(-2px);
         }
         .navbar-brand span {
-            color: var(--vibrant-orange) !important;
+            color: var(--cyan-accent) !important;
         }
 
         /* --- Hero Section --- */
@@ -63,46 +66,49 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Gradient Biru */
-            background: radial-gradient(circle at top right, #0030a3 0%, var(--navy-blue) 70%);
+            /* Gradient laut dalam */
+            background: radial-gradient(circle at top right, var(--teal-slate) 0%, var(--deep-abyss) 65%);
             position: relative;
         }
 
-        .text-gradient {
-            background: linear-gradient(to right, var(--cream-white), var(--soft-coral));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .text-accent {
+            color: var(--cyan-accent);
+        }
+        
+        .text-sub {
+            color: #b0c4de; /* Biru pucat untuk deskripsi */
         }
 
         /* --- Buttons --- */
         .btn-primary-custom {
-            background: linear-gradient(45deg, var(--vibrant-orange), #ff7b29);
-            color: white;
+            background-color: var(--cyan-accent);
+            color: var(--deep-abyss);
             border: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 95, 0, 0.3);
+            font-weight: 700;
         }
         .btn-primary-custom:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 95, 0, 0.5);
-            color: white;
+            background-color: var(--pale-sand);
+            color: var(--deep-abyss);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(98, 159, 173, 0.5);
         }
 
         .btn-outline-custom {
-            border: 2px solid var(--soft-coral);
-            color: var(--cream-white);
+            border: 2px solid var(--teal-slate);
+            color: var(--pale-sand);
             transition: all 0.3s ease;
         }
         .btn-outline-custom:hover {
-            background-color: var(--soft-coral);
-            color: var(--navy-blue);
-            border-color: var(--soft-coral);
+            background-color: var(--teal-slate);
+            color: var(--pale-sand);
+            border-color: var(--teal-slate);
         }
 
         /* --- Cards --- */
         .project-card, .skill-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 250, 230, 0.1);
+            background: rgba(41, 99, 116, 0.15); /* Teal slate tint */
+            border: 1px solid rgba(98, 159, 173, 0.2);
             border-radius: 12px;
             transition: all 0.4s ease;
             height: 100%;
@@ -112,60 +118,53 @@
 
         .project-card:hover, .skill-card:hover {
             transform: translateY(-10px);
-            border-color: var(--vibrant-orange);
-            background: rgba(255, 255, 255, 0.07);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(41, 99, 116, 0.3);
+            border-color: var(--cyan-accent);
+            box-shadow: 0 10px 30px rgba(12, 44, 85, 0.5);
         }
 
-        .project-card h3, .project-card h4 {
-            color: var(--soft-coral);
-        }
-
-        /* --- Badges & Icons --- */
+        /* --- Badges --- */
         .badge-custom {
-            background: rgba(255, 95, 0, 0.15);
-            color: var(--soft-coral);
-            border: 1px solid var(--vibrant-orange);
+            background: rgba(12, 44, 85, 0.5);
+            color: var(--cyan-accent);
+            border: 1px solid var(--teal-slate);
             padding: 8px 16px;
             border-radius: 30px;
             font-weight: 500;
             font-size: 0.85rem;
         }
 
-        .icon-box i {
-            color: var(--vibrant-orange);
+        /* --- Icons --- */
+        i {
+            color: var(--cyan-accent);
         }
-
-        /* --- Section Styling --- */
-        .section-alt {
-            background-color: #001d66; /* Sedikit lebih terang dari navy utama */
-        }
+        .fa-bolt { color: #ffd700; } /* Keep bolt yellow for visibility */
+        .fa-leaf { color: #4cd137; } /* Keep leaf green */
 
         /* --- Modals --- */
         .modal-content {
-            background-color: var(--navy-blue);
-            border: 1px solid var(--soft-coral);
-            color: var(--cream-white);
+            background-color: var(--deep-abyss);
+            border: 1px solid var(--teal-slate);
+            color: var(--pale-sand);
         }
         .modal-header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(98, 159, 173, 0.3);
         }
         .btn-close-white {
-            filter: invert(1) brightness(200%);
+            filter: invert(1) sepia(1) saturate(0) brightness(200%);
         }
 
         /* --- List Group --- */
         .list-group-item {
-            background-color: rgba(255, 255, 255, 0.03) !important;
-            border-color: rgba(255, 255, 255, 0.1) !important;
-            color: var(--cream-white) !important;
+            background-color: rgba(41, 99, 116, 0.1) !important;
+            border-color: rgba(98, 159, 173, 0.2) !important;
+            color: var(--pale-sand) !important;
         }
-        .text-accent {
-            color: var(--vibrant-orange) !important;
-        }
-        .text-sub-accent {
-            color: var(--soft-coral) !important;
-        }
+        
+        /* Override default bootstrap text colors */
+        .text-white { color: var(--pale-sand) !important; }
+        .text-secondary { color: var(--cyan-accent) !important; }
+        .text-white-50 { color: rgba(237, 237, 206, 0.6) !important; }
     </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar-example">
@@ -192,35 +191,35 @@
 
     <section id="home" class="hero-section text-center px-4">
         <div class="container" data-aos="fade-up" data-aos-duration="1200">
-            <h5 class="text-uppercase text-sub-accent letter-spacing-2 mb-3 fw-bold">Portfolio 2026</h5>
+            <h5 class="text-uppercase text-accent letter-spacing-2 mb-3 fw-bold">Portfolio 2026</h5>
             <h1 class="display-3 fw-bolder mb-3 text-white">Mochammad Riezky <br> Syahrani Yusuf</h1>
-            <h3 class="fw-light mb-4 text-gradient">Fullstack Robotic & IoT Engineer</h3>
+            <h3 class="fw-light mb-4 text-white-50">Fullstack Robotic & IoT Engineer</h3>
             <p class="text-white-50 mb-5 mx-auto" style="max-width: 600px;">
                 Mahasiswa Teknik Elektronika PENS dengan spesialisasi pada Embedded System, UAV Control, dan Machine Learning.
             </p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="#projects" class="btn btn-primary-custom rounded-pill px-5 py-3 fw-bold">Lihat Karya</a>
+                <a href="#projects" class="btn btn-primary-custom rounded-pill px-5 py-3 shadow-lg">Lihat Karya</a>
                 <a href="https://linkedin.com/in/riezky-mochammad" target="_blank" class="btn btn-outline-custom rounded-pill px-5 py-3"><i class="fab fa-linkedin"></i> Connect</a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-5 section-alt">
+    <section id="about" class="py-5" style="background-color: rgba(41, 99, 116, 0.1);">
         <div class="container py-5">
             <div class="row align-items-center">
                 <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right">
-                    <div class="rounded-4 d-flex align-items-center justify-content-center border border-2 border-warning" style="height: 400px; background: url('https://source.unsplash.com/random/500x600/?robot,circuit') center/cover; opacity: 0.8; border-color: var(--vibrant-orange) !important;">
+                    <div class="rounded-4 d-flex align-items-center justify-content-center border border-2 border-info" style="height: 400px; background: url('https://source.unsplash.com/random/500x600/?robot,circuit') center/cover; opacity: 0.8; border-color: var(--teal-slate) !important;">
                         <span class="text-white bg-dark p-2 rounded opacity-75">Upload Foto Profil Disini</span>
                     </div>
                 </div>
                 <div class="col-lg-7 ps-lg-5" data-aos="fade-left">
                     <h6 class="text-accent fw-bold text-uppercase mb-3">Tentang Saya</h6>
-                    <h2 class="fw-bold mb-4">Membangun Masa Depan dengan <span style="color: var(--soft-coral); border-bottom: 2px solid var(--vibrant-orange);">Inovasi Teknologi</span></h2>
+                    <h2 class="fw-bold mb-4">Membangun Masa Depan dengan <span style="color: var(--cyan-accent); border-bottom: 2px solid var(--teal-slate);">Inovasi Teknologi</span></h2>
                     <p class="text-white-50 lead">
                         Saya adalah mahasiswa tahun ketiga di PENS dengan passion kuat di bidang elektronik dan robotika. Saya memiliki pengalaman memimpin tim dalam kompetisi nasional seperti KRTI dan mengembangkan solusi IoT yang efisien.
                     </p>
 
-                    <div class="row mt-4 icon-box">
+                    <div class="row mt-4">
                         <div class="col-md-6 mb-3">
                             <i class="fas fa-microchip fa-2x mb-2"></i>
                             <h5 class="fw-bold text-white">Embedded System</h5>
@@ -241,13 +240,13 @@
         <div class="container py-5">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="fw-bold text-white">Technical Arsenal</h2>
-                <p class="text-sub-accent">Software dan Hardware yang saya kuasai</p>
+                <p class="text-accent">Software dan Hardware yang saya kuasai</p>
             </div>
             
             <div class="row justify-content-center g-4">
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
                     <div class="skill-card p-4 h-100">
-                        <h5 class="text-accent mb-3"><i class="fas fa-cogs me-2"></i> Hardware & Embedded</h5>
+                        <h5 class="text-white mb-3"><i class="fas fa-cogs me-2"></i> Hardware & Embedded</h5>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge-custom">STM32 CubeIDE</span>
                             <span class="badge-custom">Arduino</span>
@@ -259,7 +258,7 @@
 
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
                     <div class="skill-card p-4 h-100">
-                        <h5 class="text-accent mb-3"><i class="fas fa-bezier-curve me-2"></i> Circuit Design (EDA)</h5>
+                        <h5 class="text-white mb-3"><i class="fas fa-bezier-curve me-2"></i> Circuit Design (EDA)</h5>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge-custom">KiCad</span>
                             <span class="badge-custom">EasyEDA</span>
@@ -272,7 +271,7 @@
 
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
                     <div class="skill-card p-4 h-100">
-                        <h5 class="text-accent mb-3"><i class="fas fa-cube me-2"></i> 3D & Tools</h5>
+                        <h5 class="text-white mb-3"><i class="fas fa-cube me-2"></i> 3D & Tools</h5>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge-custom">Autodesk Fusion 360</span>
                             <span class="badge-custom">Autodesk Inventor</span>
@@ -284,7 +283,7 @@
         </div>
     </section>
 
-    <section id="projects" class="py-5 section-alt">
+    <section id="projects" class="py-5" style="background-color: rgba(41, 99, 116, 0.1);">
         <div class="container py-5">
             <h2 class="fw-bold mb-5 text-center text-white" data-aos="fade-up">Featured Projects</h2>
             
@@ -293,8 +292,8 @@
                     <div class="project-card p-4 d-flex flex-column justify-content-between">
                         <div>
                             <div class="d-flex justify-content-between align-items-start mb-3">
-                                <h3 class="fw-bold">EcoPens: ESC 75A</h3>
-                                <i class="fas fa-bolt fa-2x text-accent"></i>
+                                <h3 class="fw-bold text-white">EcoPens: ESC 75A</h3>
+                                <i class="fas fa-bolt fa-2x"></i>
                             </div>
                             <p class="text-white-50 mb-4">
                                 Electronic Speed Controller (ESC) berarus tinggi (75A) yang didesain ultra-compact (7x4cm) untuk UAV. Menggunakan STM32 dan desain PCB custom.
@@ -313,8 +312,8 @@
                     <div class="project-card p-4 d-flex flex-column justify-content-between">
                         <div>
                             <div class="d-flex justify-content-between align-items-start mb-3">
-                                <h3 class="fw-bold">OtoPonic IoT System</h3>
-                                <i class="fas fa-leaf fa-2x text-success"></i>
+                                <h3 class="fw-bold text-white">OtoPonic IoT System</h3>
+                                <i class="fas fa-leaf fa-2x"></i>
                             </div>
                             <p class="text-white-50 mb-4">
                                 Sistem Hidroponik Otomatis berbasis IoT dengan monitoring real-time via Web/App. Mengontrol pH, nutrisi, dan level air secara otomatis.
@@ -331,7 +330,7 @@
 
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="project-card p-4">
-                        <h4 class="fw-bold mb-2">SmartGlass Tech</h4>
+                        <h4 class="fw-bold text-white mb-2">SmartGlass Tech</h4>
                         <p class="text-white-50 small mb-3">Sistem Wiper Belakang Otomatis berbasis deteksi hujan untuk meningkatkan visibilitas pengemudi.</p>
                         <button class="btn btn-sm btn-link text-accent text-decoration-none px-0" data-bs-toggle="modal" data-bs-target="#modalProject3">Detail <i class="fas fa-arrow-right"></i></button>
                     </div>
@@ -339,7 +338,7 @@
 
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="project-card p-4">
-                        <h4 class="fw-bold mb-2">Class D Amplifier</h4>
+                        <h4 class="fw-bold text-white mb-2">Class D Amplifier</h4>
                         <p class="text-white-50 small mb-3">Audio Amplifier TPA3110 dengan integrasi Bluetooth, MP3 Player, dan manajemen baterai 4S Li-Ion.</p>
                         <button class="btn btn-sm btn-link text-accent text-decoration-none px-0" data-bs-toggle="modal" data-bs-target="#modalProject4">Detail <i class="fas fa-arrow-right"></i></button>
                     </div>
@@ -347,7 +346,7 @@
 
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
                     <div class="project-card p-4">
-                        <h4 class="fw-bold mb-2">EFRISA UAV Team</h4>
+                        <h4 class="fw-bold text-white mb-2">EFRISA UAV Team</h4>
                         <p class="text-white-50 small mb-3">Divisi Technology Development KRTI. Fokus pada riset kontrol terbang dan manufaktur UAV.</p>
                         <button class="btn btn-sm btn-link text-accent text-decoration-none px-0" data-bs-toggle="modal" data-bs-target="#modalProject5">Detail <i class="fas fa-arrow-right"></i></button>
                     </div>
@@ -364,7 +363,7 @@
                     <div class="list-group">
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1 text-sub-accent"><i class="fas fa-trophy me-2"></i> Juara 3 Nasional KRTI 2024</h5>
+                                <h5 class="mb-1 text-accent"><i class="fas fa-trophy me-2"></i> Juara 3 Nasional KRTI 2024</h5>
                                 <small>Sep 2024</small>
                             </div>
                             <p class="mb-1 text-white-50 small">Divisi Technology Development, Kontes Robot Terbang Indonesia.</p>
@@ -400,15 +399,15 @@
         </div>
     </section>
 
-    <footer class="py-5 text-center border-top border-secondary" style="background-color: rgba(0,0,0,0.2);">
+    <footer class="py-5 text-center border-top border-secondary" style="background-color: rgba(0,0,0,0.2); border-color: var(--teal-slate) !important;">
         <div class="container">
             <h2 class="fw-bold mb-3 text-white">Let's Collaborate</h2>
             <p class="text-white-50 mb-4">Tertarik berdiskusi tentang proyek Embedded System, IoT, atau UAV?</p>
             
             <div class="d-flex justify-content-center gap-4 mb-4">
-                <a href="mailto:riezky.mochammad07@gmail.com" class="text-white fs-4"><i class="fas fa-envelope hover-gold"></i></a>
-                <a href="https://linkedin.com/in/riezky-mochammad" class="text-white fs-4"><i class="fab fa-linkedin hover-gold"></i></a>
-                <a href="https://wa.me/6289612026343" class="text-white fs-4"><i class="fab fa-whatsapp hover-gold"></i></a>
+                <a href="mailto:riezky.mochammad07@gmail.com" class="text-white fs-4"><i class="fas fa-envelope hover-glow"></i></a>
+                <a href="https://linkedin.com/in/riezky-mochammad" class="text-white fs-4"><i class="fab fa-linkedin hover-glow"></i></a>
+                <a href="https://wa.me/6289612026343" class="text-white fs-4"><i class="fab fa-whatsapp hover-glow"></i></a>
             </div>
             
             <p class="small text-white-50 mb-0">&copy; 2026 Mochammad Riezky Syahrani Yusuf. Surabaya, Indonesia.</p>
