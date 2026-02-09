@@ -3,146 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M. Riezky Syahrani Yusuf | Robotic & IoT Engineer</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>M. Riezky Syahrani Yusuf | Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        :root {
-            --electric-blue: #00d4ff;
-            --neon-green: #39ff14;
-            --dark-bg: #050811;
-            --card-bg: rgba(15, 23, 42, 0.8);
-        }
-
+        /* Mengatur warna dasar halaman menjadi hitam pekat (Modern Dark Theme) */
         body {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: var(--dark-bg);
-            color: #e2e8f0;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #050505; 
+            color: #ffffff;
+            overflow-x: hidden; /* Mencegah scroll menyamping */
         }
 
-        /* CUSTOM STYLES (Agar tetap terlihat keren seperti versi sebelumnya) */
+        /* Styling Navigasi agar melayang dan transparan (Glassmorphism) */
         .navbar {
-            background: rgba(5, 8, 17, 0.9) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(15px); /* Efek blur seperti kaca */
+            border-bottom: 1px solid #222;
+        }
+        
+        /* Efek hover pada link navigasi */
+        .nav-link {
+            color: #aaa !important;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #fff !important;
+            transform: translateY(-2px);
         }
 
+        /* Styling Hero Section (Bagian paling atas) */
         .hero-section {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            justify-content: center;
+            background: radial-gradient(circle at top right, #222 0%, #000 60%);
+            position: relative;
         }
 
-        .custom-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 20px;
-            transition: all 0.3s ease;
+        /* Styling teks gradasi agar terlihat mewah */
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #6c757d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Styling Kartu Proyek */
+        .project-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            transition: all 0.4s ease; /* Transisi halus saat kursor masuk */
             height: 100%;
+            cursor: pointer;
+            overflow: hidden;
         }
 
-        .custom-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--electric-blue);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        .project-card:hover {
+            transform: translateY(-10px); /* Kartu naik sedikit */
+            border-color: #555;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
         }
 
-        .glow-text {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--electric-blue);
-            text-shadow: 0 0 15px var(--electric-blue);
+        /* Styling Badge (Label Skill) */
+        .badge-custom {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 300;
+            font-size: 0.85rem;
         }
 
-        .btn-outline-cyber {
-            border: 2px solid var(--electric-blue);
-            color: var(--electric-blue);
-            font-family: 'Orbitron', sans-serif;
-            padding: 10px 30px;
-            border-radius: 0;
-            transition: 0.3s;
+        /* Styling Modal (Pop-up Detail Proyek) */
+        .modal-content {
+            background-color: #0f0f0f;
+            border: 1px solid #333;
+            color: white;
         }
-
-        .btn-outline-cyber:hover {
-            background: var(--electric-blue);
-            color: var(--dark-bg);
-            box-shadow: 0 0 20px var(--electric-blue);
+        .modal-header, .modal-footer {
+            border-color: #222;
         }
-
-        .skill-badge {
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid var(--electric-blue);
-            color: var(--electric-blue);
-            border-radius: 50px;
-            padding: 5px 15px;
-            font-size: 0.8rem;
-            margin: 5px;
-            display: inline-block;
-        }
-
-        /* Nav Link Hover Animation */
-        .nav-link { color: #fff !important; margin: 0 10px; }
-        .nav-link:hover { color: var(--electric-blue) !important; }
     </style>
 </head>
-<body>
+<body data-bs-spy="scroll" data-bs-target="#navbar-example">
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar-example">
         <div class="container">
-            <a class="navbar-brand font-weight-bold" href="#" style="font-family: 'Orbitron';">
-                <span style="color: var(--electric-blue);">&lt;</span> RIEZKY <span style="color: var(--electric-blue);">/&gt;</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand fw-bold text-white tracking-wider" href="#">RIEZKY.<span class="text-secondary">SYS</span></a>
+            
+            <button class="navbar-toggler navbar-dark border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#achievements">Awards</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="hero-section">
-        <div class="container text-center">
-            <span class="badge rounded-pill mb-3" style="border: 1px solid var(--neon-green); color: var(--neon-green);">ELECTRONICS ENGINEER @ PENS</span>
-            <h1 class="display-1 fw-bold mb-4 glow-text">M. RIEZKY SYAHRANI</h1>
-            <p class="fs-4 text-secondary mb-5">Fullstack Robotic & IoT Specialist from Surabaya</p>
+    <section id="home" class="hero-section text-center px-4">
+        <div class="container" data-aos="fade-up" data-aos-duration="1200">
+            <h5 class="text-uppercase text-secondary letter-spacing-2 mb-3">Portfolio 2026</h5>
+            <h1 class="display-3 fw-bolder mb-3">Mochammad Riezky <br> Syahrani Yusuf</h1>
+            <h3 class="fw-light text-gradient mb-4">Fullstack Robotic & IoT Engineer</h3>
+            <p class="text-secondary mb-5 mx-auto" style="max-width: 600px;">
+                Mahasiswa Teknik Elektronika PENS dengan spesialisasi pada Embedded System, UAV Control, dan Machine Learning.
+            </p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="#projects" class="btn btn-outline-cyber">LIHAT PROYEK</a>
-                <a href="#contact" class="btn btn-outline-cyber" style="border-color: var(--neon-green); color: var(--neon-green);">HUBUNGI SAYA</a>
+                <a href="#projects" class="btn btn-light rounded-pill px-5 py-3 fw-bold">Lihat Karya</a>
+                <a href="https://linkedin.com/in/riezky-mochammad" target="_blank" class="btn btn-outline-secondary rounded-pill px-5 py-3"><i class="fab fa-linkedin"></i> Connect</a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-5">
+    <section id="about" class="py-5 bg-black">
         <div class="container py-5">
-            <h2 class="glow-text mb-5 text-center">ABOUT ME</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="custom-card p-4">
-                        <h4 class="text-info mb-3">WHO I AM</h4>
-                        <p>Mahasiswa Teknik Elektronika Politeknik Elektronika Negeri Surabaya (PENS) semester 6. Fokus pada Embedded Systems, Robotika, dan IoT.</p>
-                        <p>Memiliki pengalaman dalam pengembangan UAV (EFRISA Team) dan kompetisi robotika nasional (KRTI 2024).</p>
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right">
+                    <div class="bg-secondary rounded-4 d-flex align-items-center justify-content-center" style="height: 400px; background: url('https://source.unsplash.com/random/500x600/?robot,circuit') center/cover;">
+                        <span class="text-white bg-dark p-2 rounded opacity-75">Upload Foto Profil Disini</span>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="custom-card p-4 border-info">
-                        <h4 class="text-info mb-3">EDUCATION</h4>
-                        <div class="mb-3">
-                            <h6 class="mb-0 text-white">Politeknik Elektronika Negeri Surabaya</h6>
-                            <small class="text-secondary">2023 - Sekarang (Semester 6)</small>
+                <div class="col-lg-7 ps-lg-5" data-aos="fade-left">
+                    <h6 class="text-primary fw-bold text-uppercase mb-3">Tentang Saya</h6>
+                    <h2 class="fw-bold mb-4">Membangun Masa Depan dengan <span class="text-white border-bottom border-2 border-secondary">Inovasi Teknologi</span></h2>
+                    <p class="text-secondary lead">
+                        [cite_start]Saya adalah mahasiswa tahun ketiga di PENS dengan passion kuat di bidang elektronik dan robotika[cite: 14, 15]. Saya memiliki pengalaman memimpin tim dalam kompetisi nasional seperti KRTI dan mengembangkan solusi IoT yang efisien.
+                    </p>
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <i class="fas fa-microchip fa-2x mb-2 text-white"></i>
+                            <h5 class="fw-bold">Embedded System</h5>
+                            <p class="text-secondary small">Spesialis STM32 & Arduino untuk kontrol presisi.</p>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <i class="fas fa-plane-departure fa-2x mb-2 text-white"></i>
+                            <h5 class="fw-bold">UAV Technology</h5>
+                            [cite_start]<p class="text-secondary small">Pengembangan Flight Controller & ESC[cite: 17].</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-5" style="background-color: #080808;">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold">Technical Arsenal</h2>
+                [cite_start]<p class="text-secondary">Software dan Hardware yang saya kuasai [cite: 49-60]</p>
+            </div>
+            
+            <div class="row justify-content-center g-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="p-4 border border-secondary border-opacity-25 rounded-3 h-100">
+                        <h5 class="text-white mb-3"><i class="fas fa-cogs me-2"></i> Hardware & Embedded</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge-custom">STM32 CubeIDE</span>
+                            <span class="badge-custom">Arduino</span>
+                            <span class="badge-custom">Raspberry Pi</span>
+                            <span class="badge-custom">Omron CX-One</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="p-4 border border-secondary border-opacity-25 rounded-3 h-100">
+                        <h5 class="text-white mb-3"><i class="fas fa-bezier-curve me-2"></i> Circuit Design (EDA)</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge-custom">KiCad</span>
+                            <span class="badge-custom">EasyEDA</span>
+                            <span class="badge-custom">Altium Designer</span>
+                            <span class="badge-custom">Proteus</span>
+                            <span class="badge-custom">LTspice</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="p-4 border border-secondary border-opacity-25 rounded-3 h-100">
+                        <h5 class="text-white mb-3"><i class="fas fa-cube me-2"></i> 3D & Tools</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge-custom">Autodesk Fusion 360</span>
+                            <span class="badge-custom">Autodesk Inventor</span>
+                            <span class="badge-custom">CorelDRAW</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-5">
+        <div class="container py-5">
+            <h2 class="fw-bold mb-5 text-center" data-aos="fade-up">Featured Projects</h2>
+            
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card p-4 d-flex flex-column justify-content-between">
                         <div>
-                            <h6 class="mb-0 text-white">SMAN 1 Gurah</h6>
-                            <small class="text-secondary">IPA | IPK: 89.7</small>
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h3 class="fw-bold text-white">EcoPens: ESC 75A</h3>
+                                <i class="fas fa-bolt text-warning fa-2x"></i>
+                            </div>
+                            <p class="text-secondary mb-4">
+                                Electronic Speed Controller (ESC) berarus tinggi (75A) yang didesain ultra-compact (7x4cm) untuk UAV. [cite_start]Menggunakan STM32 dan desain PCB custom[cite: 162].
+                            </p>
+                            <div class="mb-4">
+                                <span class="badge bg-secondary text-dark me-1">Power Electronics</span>
+                                <span class="badge bg-secondary text-dark me-1">KiCad</span>
+                                <span class="badge bg-secondary text-dark me-1">STM32</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-light rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#modalProject1">Lihat Detail Teknis</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h3 class="fw-bold text-white">OtoPonic IoT System</h3>
+                                <i class="fas fa-leaf text-success fa-2x"></i>
+                            </div>
+                            <p class="text-secondary mb-4">
+                                Sistem Hidroponik Otomatis berbasis IoT dengan monitoring real-time via Web/App. [cite_start]Mengontrol pH, nutrisi, dan level air secara otomatis[cite: 227].
+                            </p>
+                            <div class="mb-4">
+                                <span class="badge bg-secondary text-dark me-1">IoT</span>
+                                <span class="badge bg-secondary text-dark me-1">Arduino Mega</span>
+                                <span class="badge bg-secondary text-dark me-1">GSM Module</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-light rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#modalProject2">Lihat Detail Teknis</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card p-4">
+                        <h4 class="fw-bold text-white mb-2">SmartGlass Tech</h4>
+                        [cite_start]<p class="text-secondary small mb-3">Sistem Wiper Belakang Otomatis berbasis deteksi hujan untuk meningkatkan visibilitas pengemudi[cite: 156].</p>
+                        <button class="btn btn-sm btn-link text-white text-decoration-none px-0" data-bs-toggle="modal" data-bs-target="#modalProject3">Detail <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-card p-4">
+                        <h4 class="fw-bold text-white mb-2">Class D Amplifier</h4>
+                        [cite_start]<p class="text-secondary small mb-3">Audio Amplifier TPA3110 dengan integrasi Bluetooth, MP3 Player, dan manajemen baterai 4S Li-Ion[cite: 240, 252].</p>
+                        <button class="btn btn-sm btn-link text-white text-decoration-none px-0" data-bs-toggle="modal" data-bs-target="#modalProject4">Detail <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="project-card p-4">
+                        <h4 class="fw-bold text-white mb-2">EFRISA UAV Team</h4>
+                        <p class="text-secondary small mb-3">Divisi Technology Development KRTI. [cite_start]Fokus pada riset kontrol terbang dan manufaktur UAV[cite: 119].</p>
+                        <button class="btn btn-sm btn-link text-white text-decoration-none px-0" data-bs-toggle="modal" data-bs-target="#modalProject5">Detail <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="fw-bold text-center mb-5">Achievements & Certifications</h2>
+            <div class="row">
+                <div class="col-md-6 mb-3" data-aos="fade-right">
+                    <div class="list-group">
+                        <div class="list-group-item bg-black text-white border-secondary">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-warning"><i class="fas fa-trophy me-2"></i> Juara 3 Nasional KRTI 2024</h5>
+                                <small>Sep 2024</small>
+                            </div>
+                            [cite_start]<p class="mb-1 text-secondary small">Divisi Technology Development, Kontes Robot Terbang Indonesia[cite: 338].</p>
+                        </div>
+                        <div class="list-group-item bg-black text-white border-secondary">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-light"><i class="fas fa-medal me-2"></i> Juara 2 Wilayah KRTI 2024</h5>
+                                <small>Aug 2024</small>
+                            </div>
+                            [cite_start]<p class="mb-1 text-secondary small">Tingkat regional, Divisi Technology Development[cite: 372].</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3" data-aos="fade-left">
+                    <div class="list-group">
+                        <div class="list-group-item bg-black text-white border-secondary">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-info"><i class="fas fa-certificate me-2"></i> Fundamentals of Machine Learning</h5>
+                                <small>Saylor Academy</small>
+                            </div>
+                            [cite_start]<p class="mb-1 text-secondary small">CS207 Certification[cite: 306].</p>
+                        </div>
+                        <div class="list-group-item bg-black text-white border-secondary">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-info"><i class="fas fa-code me-2"></i> C++ Programming</h5>
+                                <small>Saylor Academy</small>
+                            </div>
+                            [cite_start]<p class="mb-1 text-secondary small">CS107 Certification[cite: 273].</p>
                         </div>
                     </div>
                 </div>
@@ -150,59 +324,80 @@
         </div>
     </section>
 
-    <section id="projects" class="py-5 bg-black bg-opacity-25">
-        <div class="container py-5">
-            <h2 class="glow-text mb-5 text-center">FEATURED PROJECTS</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="custom-card p-4">
-                        <div class="display-4 mb-3">⚡</div>
-                        <h5 class="fw-bold">EcoPens ESC 75A</h5>
-                        <p class="small text-secondary">Electronic Speed Controller ultra-kompak (7x4cm) untuk UAV dengan arus 75A.</p>
-                        <span class="skill-badge">STM32</span> <span class="skill-badge">PCB Design</span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="custom-card p-4">
-                        <div class="display-4 mb-3">🌱</div>
-                        <h5 class="fw-bold">OtoPonic IoT</h5>
-                        <p class="small text-secondary">Sistem hidroponik otomatis berbasis IoT dengan monitoring real-time via web.</p>
-                        <span class="skill-badge">Arduino</span> <span class="skill-badge">IoT</span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="custom-card p-4">
-                        <div class="display-4 mb-3">🚗</div>
-                        <h5 class="fw-bold">SmartGlass Tech</h5>
-                        <p class="small text-secondary">Otomasi wiper kaca belakang mobil berbasis sensor hujan untuk keamanan berkendara.</p>
-                        <span class="skill-badge">Sensors</span> <span class="skill-badge">Embedded</span>
-                    </div>
-                </div>
+    <footer class="py-5 text-center border-top border-secondary">
+        <div class="container">
+            <h2 class="fw-bold mb-3">Let's Collaborate</h2>
+            <p class="text-secondary mb-4">Tertarik berdiskusi tentang proyek Embedded System, IoT, atau UAV?</p>
+            
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="mailto:riezky.mochammad07@gmail.com" class="text-white fs-4"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/riezky-mochammad" class="text-white fs-4"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/6289612026343" class="text-white fs-4"><i class="fab fa-whatsapp"></i></a>
             </div>
+            
+            <p class="small text-secondary mb-0">&copy; 2026 Mochammad Riezky Syahrani Yusuf. Surabaya, Indonesia.</p>
         </div>
-    </section>
-
-    <section id="contact" class="py-5">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center">
-                    <h2 class="glow-text mb-4">GET IN TOUCH</h2>
-                    <p class="mb-5">Tertarik untuk kolaborasi atau memiliki pertanyaan seputar Robotic & IoT?</p>
-                    <div class="custom-card p-4">
-                        <p class="mb-2">📧 riezky.mochammad07@gmail.com</p>
-                        <p class="mb-2">📱 +62 896-1202-6343</p>
-                        <p>📍 Surabaya, Indonesia</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="text-center py-4 border-top border-secondary border-opacity-25">
-        <small class="text-secondary">&copy; 2026 M. Riezky Syahrani Yusuf. Built with Bootstrap & Gemini Pro.</small>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <div class="modal fade" id="modalProject1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Technical Specs: EcoPens ESC 75A</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Mendesain Electronic Speed Controller (ESC) berperforma tinggi dengan dimensi yang sangat ringkas untuk kebutuhan kompetisi UAV.</p>
+                    <ul>
+                        <li><strong>Current Handling:</strong> Max 75A Continuous.</li>
+                        [cite_start]<li><strong>Size:</strong> 7x4 cm (Compact Footprint)[cite: 162].</li>
+                        [cite_start]<li><strong>Controller:</strong> STM32 Microcontroller dengan algoritma Back EMF sensing[cite: 192].</li>
+                        [cite_start]<li><strong>Fitur:</strong> Temperature Sensor, Voltage Monitoring, High-Efficiency MOSFET Driver[cite: 169, 186].</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalProject2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">OtoPonic System Architecture</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Sebagai Project Manager, saya memimpin pengembangan sistem IoT end-to-end untuk pertanian modern.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Sensors Input:</h6>
+                            <ul>
+                                <li>pH Sensor, TDS Sensor (Nutrisi)</li>
+                                [cite_start]<li>Water Float & DS18B20 Temp Sensor [cite: 221-234]</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Actuators & Comms:</h6>
+                            <ul>
+                                <li>Relay Module (Pompa/Lampu)</li>
+                                [cite_start]<li>GSM Module & Server Connectivity [cite: 223]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Mengaktifkan animasi scroll
+        AOS.init({
+            once: true, // Animasi hanya terjadi sekali saat scroll ke bawah
+            offset: 100 // Mulai animasi sedikit sebelum elemen terlihat
+        });
+    </script>
 </body>
 </html>
