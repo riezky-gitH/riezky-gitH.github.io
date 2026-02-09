@@ -3,45 +3,1073 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Saya | Embedded System</title>
+    <title>M. Riezky Syahrani Yusuf | Fullstack Robotic & IoT Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-slate-900 text-white font-sans">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --electric-blue: #00d4ff;
+            --deep-purple: #6b2aff;
+            --neon-green: #39ff14;
+            --dark-bg: #0a0e27;
+            --darker-bg: #050811;
+            --card-bg: rgba(15, 23, 42, 0.6);
+        }
 
-    <nav class="p-5 flex justify-between max-w-4xl mx-auto border-b border-slate-800">
-        <h1 class="font-bold text-xl text-blue-400">Project_Zero</h1>
-        <div class="space-x-4 text-sm">
-            <a href="#about" class="hover:text-blue-400">Tentang</a>
-            <a href="#projects" class="hover:text-blue-400">Proyek</a>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--darker-bg);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .page {
+            min-height: 100vh;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(107, 42, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(57, 255, 20, 0.1) 0%, transparent 40%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px var(--electric-blue), 0 0 40px var(--electric-blue);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--electric-blue), var(--neon-green));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--electric-blue);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn {
+            position: relative;
+            padding: 1rem 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--electric-blue);
+            background: transparent;
+            color: var(--electric-blue);
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn:hover {
+            color: var(--darker-bg);
+            border-color: var(--electric-blue);
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            margin: 0.3rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(107, 42, 255, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(107, 42, 255, 0.3));
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--electric-blue), var(--deep-purple), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 3rem;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(107, 42, 255, 0.2));
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(180deg, var(--electric-blue), var(--deep-purple));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--electric-blue);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid var(--electric-blue);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: rgba(0, 212, 255, 0.15);
+            padding-left: 1.5rem;
+        }
+
+        /* Page Transition */
+        .page-hidden {
+            display: none;
+        }
+
+        .fade-transition {
+            animation: fadeOut 0.3s ease-out;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Certificate Section */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(107, 42, 255, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cert-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 0.5s ease-out 2s forwards;
+        }
+
+        .loader-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--electric-blue);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .timeline {
+                padding-left: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-text">INITIALIZING...</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-opacity-80" style="background: rgba(10, 14, 39, 0.8); border-bottom: 1px solid rgba(0, 212, 255, 0.2);">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="font-black text-2xl" style="font-family: 'Orbitron', sans-serif;">
+                <span style="color: var(--electric-blue);">&lt;</span>
+                MRY
+                <span style="color: var(--electric-blue);">/&gt;</span>
+            </h1>
+            <div class="flex gap-8">
+                <a href="#" onclick="showPage('home')" class="nav-link text-sm font-semibold uppercase tracking-wider hover:text-blue-400">Home</a>
+                <a href="#" onclick="showPage('about')" class="nav-link text-sm font-semibold uppercase tracking-wider hover:text-blue-400">About</a>
+                <a href="#" onclick="showPage('projects')" class="nav-link text-sm font-semibold uppercase tracking-wider hover:text-blue-400">Projects</a>
+                <a href="#" onclick="showPage('skills')" class="nav-link text-sm font-semibold uppercase tracking-wider hover:text-blue-400">Skills</a>
+                <a href="#" onclick="showPage('contact')" class="nav-link text-sm font-semibold uppercase tracking-wider hover:text-blue-400">Contact</a>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-5 py-20 text-center">
-        <h2 class="text-4xl md:text-6xl font-extrabold mb-4">Halo, Saya <span class="text-blue-500">Engineer</span></h2>
-        <p class="text-slate-400 text-lg mb-8">Saya sedang belajar membangun identitas digital untuk proyek STM32 dan sistem otomasi saya.</p>
-        
-        <a href="https://github.com" target="_blank" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-semibold transition">
-            Lihat GitHub Saya
-        </a>
-    </main>
-
-    <section id="projects" class="max-w-4xl mx-auto px-5 py-10">
-        <h3 class="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-3">Rencana Proyek</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
-                <h4 class="font-bold text-blue-400 mb-2">Sistem Otomasi Barcode</h4>
-                <p class="text-sm text-slate-400">Implementasi STM32F4 untuk mengefisiensikan jalur produksi.</p>
+    <!-- HOME PAGE -->
+    <section id="home-page" class="page min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 rounded-full text-sm font-semibold tracking-wider" style="font-family: 'Orbitron', sans-serif;">
+                    ELECTRONICS ENGINEER
+                </span>
             </div>
-            <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
-                <h4 class="font-bold text-blue-400 mb-2">Personal Web Portofolio</h4>
-                <p class="text-sm text-slate-400">Membangun website menggunakan HTML, Tailwind, dan GitHub Pages.</p>
+            
+            <h1 class="text-7xl md:text-8xl font-black mb-6 leading-tight" style="font-family: 'Orbitron', sans-serif;">
+                <span class="glow-text" style="color: var(--electric-blue);">M. RIEZKY</span><br>
+                <span style="color: #e2e8f0;">SYAHRANI YUSUF</span>
+            </h1>
+            
+            <p class="text-2xl md:text-3xl font-bold mb-4" style="background: linear-gradient(135deg, var(--electric-blue), var(--neon-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Fullstack Robotic & IoT Engineer
+            </p>
+            
+            <p class="text-lg text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+                Building intelligent systems that bridge the digital and physical world. 
+                Specialized in UAV development, embedded systems, robotics, and IoT solutions from Surabaya, Indonesia.
+            </p>
+            
+            <div class="flex gap-6 justify-center flex-wrap">
+                <button class="btn" onclick="showPage('projects')">
+                    <span>View Projects</span>
+                </button>
+                <button class="btn" style="border-color: var(--neon-green); color: var(--neon-green);" onclick="showPage('contact')">
+                    <span>Get in Touch</span>
+                </button>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
+                <div class="card text-center py-8">
+                    <div class="text-4xl font-black mb-2" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">3+</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Years Experience</div>
+                </div>
+                <div class="card text-center py-8">
+                    <div class="text-4xl font-black mb-2" style="color: var(--neon-green); font-family: 'Orbitron', sans-serif;">10+</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Projects Completed</div>
+                </div>
+                <div class="card text-center py-8">
+                    <div class="text-4xl font-black mb-2" style="color: var(--deep-purple); font-family: 'Orbitron', sans-serif;">5+</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Competitions</div>
+                </div>
+                <div class="card text-center py-8">
+                    <div class="text-4xl font-black mb-2" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">2</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Organizations</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="text-center py-10 text-slate-500 text-xs">
-        &copy; 2026 - Dibuat dengan bantuan Gemini Pro
+    <!-- ABOUT PAGE -->
+    <section id="about-page" class="page page-hidden min-h-screen px-6 pt-32 pb-20">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title">ABOUT ME</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">
+                        WHO I AM
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        I am a third-year Electronics Engineering student at Politeknik Elektronika Negeri Surabaya (PENS) 
+                        with a strong passion for electronics, robotics, and embedded systems.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        I enjoy learning new technologies and applying them to real projects while maintaining responsibility 
+                        and commitment in every task.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        My experience in UAV development, national robotics competitions, and campus organizations has 
+                        strengthened my leadership, teamwork, and problem-solving skills.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--neon-green); font-family: 'Orbitron', sans-serif;">
+                        EDUCATION
+                    </h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg mb-1" style="color: var(--electric-blue);">
+                                Politeknik Elektronika Negeri Surabaya
+                            </div>
+                            <div class="text-sm text-gray-400 mb-2">July 2023 - Present</div>
+                            <div class="text-gray-300">Bachelor of Applied Electronics Engineering</div>
+                            <div class="text-gray-300">Electrical Engineering Department</div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="font-bold text-lg mb-1" style="color: var(--electric-blue);">
+                                SMAN 1 Gurah
+                            </div>
+                            <div class="text-sm text-gray-400 mb-2">August 2019 - May 2022</div>
+                            <div class="text-gray-300">Science Major</div>
+                            <div class="text-gray-300">GPA: 89.7</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Organizations -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-bold mb-8" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">
+                    ORGANIZATIONAL EXPERIENCE
+                </h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <div class="text-5xl mb-4">🏀</div>
+                        <h4 class="text-xl font-bold mb-3" style="color: var(--electric-blue);">Chairman - PENS Basketball UKM</h4>
+                        <p class="text-gray-300 leading-relaxed">
+                            Leading the basketball student activity unit, organizing training sessions, competitions, 
+                            and building team culture within the campus community.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="text-5xl mb-4">🤖</div>
+                        <h4 class="text-xl font-bold mb-3" style="color: var(--neon-green);">Competition Division - Java Robot Contest 12</h4>
+                        <p class="text-gray-300 leading-relaxed">
+                            Managed competition logistics and technical coordination for one of Indonesia's largest 
+                            robotics competitions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work Experience -->
+            <div>
+                <h3 class="text-3xl font-bold mb-8" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">
+                    WORK EXPERIENCE
+                </h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <div class="text-5xl mb-4">🚁</div>
+                        <h4 class="text-xl font-bold mb-3" style="color: var(--electric-blue);">EFRISA Team</h4>
+                        <p class="text-sm text-gray-400 mb-3">Technology Development Division</p>
+                        <p class="text-gray-300 leading-relaxed">
+                            Research and competition team from PENS competing in the Indonesian Flying Robot Contest (KRTI). 
+                            Focused on designing and developing UAV systems, emphasizing innovation, reliability, and 
+                            advanced control technologies.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="text-5xl mb-4">🥊</div>
+                        <h4 class="text-xl font-bold mb-3" style="color: var(--neon-green);">Surabaya Fight Club</h4>
+                        <p class="text-sm text-gray-400 mb-3">Community Sports Organization</p>
+                        <p class="text-gray-300 leading-relaxed">
+                            Community-based sports organization focusing on promoting boxing and martial arts in Surabaya. 
+                            Supporting both amateur and professional fighters through training sessions and workshops.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS PAGE -->
+    <section id="projects-page" class="page page-hidden min-h-screen px-6 pt-32 pb-20">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title">FEATURED PROJECTS</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="card">
+                    <div class="project-image">
+                        🚗
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">
+                        SmartGlassTech
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">Smart Rear Car Visibility System</p>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Automatic rear car wiper system that activates when rain is detected. 
+                        Handled technical development for UPN Jatim, enhancing driver visibility and safety through sensor automation.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">Embedded Systems</span>
+                        <span class="skill-badge">Sensors</span>
+                        <span class="skill-badge">Automation</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card">
+                    <div class="project-image">
+                        ⚡
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--neon-green); font-family: 'Orbitron', sans-serif;">
+                        EcoPens ESC 75A
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">Electronics Speed Controller for UAV</p>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Custom-designed Electronic Speed Controller for EFRISA team, capable of handling up to 75A current 
+                        for T-Motor BLDC motors. Ultra-compact design (7x4cm) optimized for UAV space constraints.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">Power Electronics</span>
+                        <span class="skill-badge">UAV</span>
+                        <span class="skill-badge">PCB Design</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="card">
+                    <div class="project-image">
+                        🌱
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--deep-purple); font-family: 'Orbitron', sans-serif;">
+                        OtoPonic
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">IoT-Based Automated Hydroponic System</p>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Led development as Project Manager. Smart IoT system automating hydroponic farming with real-time 
+                        monitoring and remote control via web and mobile apps. Manages pH, nutrients, and water levels automatically.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">IoT</span>
+                        <span class="skill-badge">Web Development</span>
+                        <span class="skill-badge">Sensors</span>
+                        <span class="skill-badge">Mobile</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="card">
+                    <div class="project-image">
+                        🤖
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">
+                        Autonomous Line Follower Robot
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">Competition Robotics</p>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Developed for national robotics competitions. Features advanced PID control, 
+                        high-speed line tracking, and obstacle detection capabilities.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">Robotics</span>
+                        <span class="skill-badge">PID Control</span>
+                        <span class="skill-badge">C++</span>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="card">
+                    <div class="project-image">
+                        🛸
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--neon-green); font-family: 'Orbitron', sans-serif;">
+                        UAV Flight Controller
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">Drone Technology</p>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Custom flight controller development for EFRISA UAV platform. Implements advanced 
+                        stabilization algorithms and autonomous flight modes.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">UAV</span>
+                        <span class="skill-badge">STM32</span>
+                        <span class="skill-badge">Control Systems</span>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="card">
+                    <div class="project-image">
+                        📡
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--deep-purple); font-family: 'Orbitron', sans-serif;">
+                        Smart Home Automation
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">IoT & Machine Learning</p>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Integrated smart home system with voice control, mobile app interface, and ML-based 
+                        energy optimization. Features automated lighting, climate control, and security.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">IoT</span>
+                        <span class="skill-badge">ML</span>
+                        <span class="skill-badge">App Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS PAGE -->
+    <section id="skills-page" class="page page-hidden min-h-screen px-6 pt-32 pb-20">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title">TECHNICAL SKILLS</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Technical Skills -->
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">
+                        CORE COMPETENCIES
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Robotics</span>
+                                <span class="text-sm" style="color: var(--electric-blue);">Expert</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="h-2 rounded-full" style="width: 95%; background: linear-gradient(90deg, var(--electric-blue), var(--deep-purple));"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">UAV Systems</span>
+                                <span class="text-sm" style="color: var(--electric-blue);">Advanced</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="h-2 rounded-full" style="width: 90%; background: linear-gradient(90deg, var(--electric-blue), var(--deep-purple));"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">IoT Development</span>
+                                <span class="text-sm" style="color: var(--electric-blue);">Advanced</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="h-2 rounded-full" style="width: 88%; background: linear-gradient(90deg, var(--electric-blue), var(--deep-purple));"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Embedded Systems</span>
+                                <span class="text-sm" style="color: var(--electric-blue);">Expert</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="h-2 rounded-full" style="width: 92%; background: linear-gradient(90deg, var(--electric-blue), var(--deep-purple));"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Electronics Design</span>
+                                <span class="text-sm" style="color: var(--electric-blue);">Advanced</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="h-2 rounded-full" style="width: 85%; background: linear-gradient(90deg, var(--electric-blue), var(--deep-purple));"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Machine Learning</span>
+                                <span class="text-sm" style="color: var(--electric-blue);">Intermediate</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="h-2 rounded-full" style="width: 75%; background: linear-gradient(90deg, var(--electric-blue), var(--deep-purple));"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Web Development</span>
+                                <span class="text-sm" style="color: var(--electric-blue);">Intermediate</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="h-2 rounded-full" style="width: 78%; background: linear-gradient(90deg, var(--electric-blue), var(--deep-purple));"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology Stack -->
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--neon-green); font-family: 'Orbitron', sans-serif;">
+                        TECHNOLOGY STACK
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold mb-3 text-gray-300">Programming Languages</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge">C/C++</span>
+                                <span class="skill-badge">Python</span>
+                                <span class="skill-badge">JavaScript</span>
+                                <span class="skill-badge">MATLAB</span>
+                                <span class="skill-badge">Assembly</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold mb-3 text-gray-300">Microcontrollers & Platforms</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge">STM32</span>
+                                <span class="skill-badge">Arduino</span>
+                                <span class="skill-badge">ESP32</span>
+                                <span class="skill-badge">Raspberry Pi</span>
+                                <span class="skill-badge">PIC</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold mb-3 text-gray-300">Design & Simulation Tools</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge">Altium Designer</span>
+                                <span class="skill-badge">KiCAD</span>
+                                <span class="skill-badge">Proteus</span>
+                                <span class="skill-badge">SolidWorks</span>
+                                <span class="skill-badge">MATLAB Simulink</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold mb-3 text-gray-300">Frameworks & Technologies</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge">ROS</span>
+                                <span class="skill-badge">TensorFlow</span>
+                                <span class="skill-badge">Node.js</span>
+                                <span class="skill-badge">React</span>
+                                <span class="skill-badge">MQTT</span>
+                                <span class="skill-badge">Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Skills -->
+            <div class="card">
+                <h3 class="text-2xl font-bold mb-6" style="color: var(--deep-purple); font-family: 'Orbitron', sans-serif;">
+                    SOFT SKILLS & COMPETENCIES
+                </h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">🧩</div>
+                        <h4 class="font-bold mb-2" style="color: var(--electric-blue);">Problem Solving</h4>
+                        <p class="text-sm text-gray-400">Analytical thinking and creative solutions</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">🤝</div>
+                        <h4 class="font-bold mb-2" style="color: var(--neon-green);">Teamwork</h4>
+                        <p class="text-sm text-gray-400">Collaborative and communicative</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">📊</div>
+                        <h4 class="font-bold mb-2" style="color: var(--deep-purple);">Project Management</h4>
+                        <p class="text-sm text-gray-400">Planning and execution excellence</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">⚡</div>
+                        <h4 class="font-bold mb-2" style="color: var(--electric-blue);">Adaptive</h4>
+                        <p class="text-sm text-gray-400">Quick learner and flexible</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates -->
+            <div class="mt-16">
+                <h3 class="text-3xl font-bold mb-8" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">
+                    CERTIFICATIONS & ACHIEVEMENTS
+                </h3>
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        📜
+                    </div>
+                    <div class="cert-card">
+                        🏆
+                    </div>
+                    <div class="cert-card">
+                        🎓
+                    </div>
+                    <div class="cert-card">
+                        🥇
+                    </div>
+                </div>
+                <p class="text-center text-gray-400 mt-6">Various certifications in robotics, IoT, and embedded systems competitions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section id="contact-page" class="page page-hidden min-h-screen px-6 pt-32 pb-20">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="section-title">GET IN TOUCH</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">
+                        LET'S COLLABORATE
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        I'm always interested in hearing about new projects and opportunities in robotics, 
+                        IoT, and embedded systems. Whether you have a question or just want to say hi, 
+                        feel free to reach out!
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        Based in <span style="color: var(--neon-green); font-weight: bold;">Surabaya, Indonesia</span>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-6" style="color: var(--neon-green); font-family: 'Orbitron', sans-serif;">
+                        CONTACT INFORMATION
+                    </h3>
+                    
+                    <a href="mailto:riezky.mochammad07@gmail.com" class="contact-link">
+                        <span class="text-2xl">📧</span>
+                        <div>
+                            <div class="text-sm text-gray-400">Email</div>
+                            <div class="font-semibold">riezky.mochammad07@gmail.com</div>
+                        </div>
+                    </a>
+
+                    <a href="tel:+6289612026343" class="contact-link">
+                        <span class="text-2xl">📱</span>
+                        <div>
+                            <div class="text-sm text-gray-400">Phone</div>
+                            <div class="font-semibold">+62 896 1202 6343</div>
+                        </div>
+                    </a>
+
+                    <a href="https://linkedin.com/in/riezky-mochammad" target="_blank" class="contact-link">
+                        <span class="text-2xl">💼</span>
+                        <div>
+                            <div class="text-sm text-gray-400">LinkedIn</div>
+                            <div class="font-semibold">linkedin.com/in/riezky-mochammad</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Contact Form -->
+            <div class="card">
+                <h3 class="text-2xl font-bold mb-6 text-center" style="color: var(--electric-blue); font-family: 'Orbitron', sans-serif;">
+                    SEND A MESSAGE
+                </h3>
+                <form class="space-y-6" onsubmit="handleSubmit(event)">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-gray-300">Name</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-blue-400/30 focus:border-blue-400 focus:outline-none transition" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-gray-300">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-blue-400/30 focus:border-blue-400 focus:outline-none transition" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">Subject</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-blue-400/30 focus:border-blue-400 focus:outline-none transition" placeholder="Project Inquiry">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">Message</label>
+                        <textarea required rows="5" class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-blue-400/30 focus:border-blue-400 focus:outline-none transition resize-none" placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn">
+                            <span>Send Message</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center border-t border-blue-400/20" style="background: rgba(10, 14, 39, 0.8);">
+        <p class="text-gray-400 mb-2">
+            &copy; 2026 M. Riezky Syahrani Yusuf. All rights reserved.
+        </p>
+        <p class="text-sm text-gray-500">
+            Crafted with passion for robotics and innovation
+        </p>
     </footer>
 
+    <script>
+        // Page Navigation with smooth transitions
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            
+            pages.forEach(page => {
+                if (!page.classList.contains('page-hidden')) {
+                    page.classList.add('fade-transition');
+                    setTimeout(() => {
+                        page.classList.add('page-hidden');
+                        page.classList.remove('fade-transition');
+                    }, 300);
+                }
+            });
+
+            setTimeout(() => {
+                const targetPage = document.getElementById(pageId + '-page');
+                targetPage.classList.remove('page-hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 300);
+        }
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            event.target.reset();
+        }
+
+        // Remove loader after page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+            }, 2000);
+        });
+
+        // Add scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Dynamic typing effect for hero section
+        const words = ['Engineer', 'Innovator', 'Developer', 'Creator'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const heroTitle = document.querySelector('.glow-text');
+            if (!heroTitle) return;
+
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                charIndex--;
+            } else {
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => isDeleting = true, 1500);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            setTimeout(typeEffect, isDeleting ? 50 : 100);
+        }
+    </script>
 </body>
 </html>
